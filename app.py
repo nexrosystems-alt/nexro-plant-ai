@@ -7,10 +7,27 @@ import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 import datetime
+from pathlib import Path
+import gdown
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 st.set_page_config(page_title="Nexro Plant AI", page_icon="🌿", layout="wide", initial_sidebar_state="collapsed")
+
+
+# ── DESCARGA AUTOMATICA DEL MODELO ───────────────────────────────────────────
+MODEL_PATH = "best.pt"
+GDRIVE_ID = "1RN4aJteiDmR7s0rTcQ8WlkCCnIcC6y4D"
+
+def descargar_modelo():
+    if not Path(MODEL_PATH).exists():
+        with st.spinner("Descargando modelo de IA... (solo la primera vez)"):
+            gdown.download(id=GDRIVE_ID, output=MODEL_PATH, quiet=False)
+
+descargar_modelo()
+
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 
 st.markdown("""
 <style>
@@ -259,7 +276,7 @@ COLORES = {
 
 @st.cache_resource
 def cargar_modelo():
-    return YOLO(r"D:\NEXRO_PLANT_AI\runs\nexro_plant_v3_full\weights\best.pt")
+    return YOLO(MODEL_PATH)
 
 def generar_excel(clase, conf, info, top5_nombres, top5_confs):
     wb = openpyxl.Workbook()
