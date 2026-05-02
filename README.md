@@ -11,7 +11,7 @@ D:\NEXRO_APP\
 ├── app.py              ← Archivo principal (ejecuta este)
 ├── nexro_data.py       ← Base de datos (88 enfermedades, 20 cultivos)
 ├── nexro_utils.py      ← Excel, PDF, historial, validaciones
-└── best.pt             ← Tu modelo (ya lo tienes)
+  └── best.pt             ← Archivo descarga drive: https://drive.google.com/file/d/1RN4aJteiDmR7s0rTcQ8WlkCCnIcC6y4D/view?usp=drive_link
 ```
 
 ---
